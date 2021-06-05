@@ -26,20 +26,22 @@ class TvShowsFragment : Fragment() {
     private lateinit var binding: FragmentTvShowsBinding
     private lateinit var adapter: TvShowsAdapter
     private  val viewModel: TvShowsViewModel by viewModels()
-    private var searchJob: Job? = null
+    private var job: Job? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentTvShowsBinding.inflate(inflater, container, false);
-  binding.title.setOnClickListener { Navigation.findNavController(it).navigate(R.id.action_tvShowsFragment_to_detailsFragment) }
-        viewModel.getShips();
-        viewModel.tvShowsResponse.observe(viewLifecycleOwner){
+ // binding.title.setOnClickListener { Navigation.findNavController(it).navigate(R.id.action_tvShowsFragment_to_detailsFragment) }
+//        viewModel.getShips();
+//        viewModel.tvShowsResponse.observe(viewLifecycleOwner){
+//
+//        }
 
+        binding.refreshLayout.setOnRefreshListener {
+            getTvShow()
         }
-
-
 
 
         return binding.root
@@ -49,9 +51,9 @@ class TvShowsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-//        adapter= TvShowsAdapter(requireContext())
-//        setupRecycler()
-//        getShips()
+        adapter= TvShowsAdapter(requireContext())
+        setupRecycler()
+        getTvShow()
     }
     private fun setupRecycler() {
         context?.apply {
@@ -61,17 +63,18 @@ class TvShowsFragment : Fragment() {
         }
     }
 
-    private fun getShips() {
-//        searchJob?.cancel()
-//        searchJob = lifecycleScope.launch {
-//            tvShowsViewModel.getShips().collectLatest {
-//                adapter.submitData(it)
-//            }
-//        }
-//        searchJob!!.invokeOnCompletion {
-//            binding.refreshLayout.isRefreshing = false
-//
-//        }
+    private fun getTvShow() {
+
+       job?.cancel()
+       job = lifecycleScope.launch {
+            viewModel.getShips().collectLatest {
+                adapter.submitData(it)
+            }
+        }
+       job!!.invokeOnCompletion {
+            binding.refreshLayout.isRefreshing = false
+
+        }
 
     }
 

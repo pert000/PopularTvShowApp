@@ -25,10 +25,10 @@ class DetailsFragment : Fragment() {
     ): View? {
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
 
-        viewModel.getDetails();
-        viewModel.detailsResponse.observe(viewLifecycleOwner, Observer {
+//        viewModel.getDetails();
+//        viewModel.detailsResponse.observe(viewLifecycleOwner, Observer {
 
-        })
+//        })
 
         return binding.root
     }

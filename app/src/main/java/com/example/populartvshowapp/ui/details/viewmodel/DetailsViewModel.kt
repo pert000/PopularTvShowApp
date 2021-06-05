@@ -15,11 +15,11 @@ class DetailsViewModel @Inject constructor(
 ) : ViewModel() {
     private var detailsRequest = MutableLiveData<String>()
 
-    var detailsResponse: LiveData<Resource<DetailsResponse>> =
-        detailsRequest.switchMap { repository.getDetails() }
+//    var detailsResponse: LiveData<Resource<DetailsResponse>> =
+//        detailsRequest.switchMap { repository.getDetails() }
 
 
-    fun getDetails() {
-        detailsRequest.value = " "
-    }
+//    fun getDetails() {
+//        detailsRequest.value = " "
+//    }
 }
