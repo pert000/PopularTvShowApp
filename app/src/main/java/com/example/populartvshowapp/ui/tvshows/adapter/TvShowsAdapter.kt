@@ -1,14 +1,17 @@
 package com.example.populartvshowapp.ui.tvshows.adapter
 
 import android.content.Context
-import android.content.Intent
+import android.graphics.BitmapFactory
+import android.os.Environment
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.populartvshowapp.databinding.ShipsItemBinding
+import com.bumptech.glide.Glide
+import com.example.populartvshowapp.databinding.TvShowItemBinding
 import com.example.populartvshowapp.model.TvShowsModel
+
 
 class TvShowsAdapter(val context: Context) :
     PagingDataAdapter<TvShowsModel, TvShowsAdapter.ViewHolder>(DiffCallback()) {
@@ -16,12 +19,19 @@ class TvShowsAdapter(val context: Context) :
 
     class ViewHolder(
         val context: Context,
-        private val binding: ShipsItemBinding
+        private val binding: TvShowItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: TvShowsModel) {
             binding.apply {
                 title.text = item.name
+                Glide.with(context)
+                    .load("https://image.tmdb.org/t/p/original//" + item.poster_path)//todo
+                    .into(image)
+                voteAverage.text=item.vote_average.toString()
+
+
+
             }
         }
     }
@@ -36,7 +46,7 @@ class TvShowsAdapter(val context: Context) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             context,
-            ShipsItemBinding.inflate(LayoutInflater.from(context), parent, false)
+            TvShowItemBinding.inflate(LayoutInflater.from(context), parent, false)
         )
     }
 
