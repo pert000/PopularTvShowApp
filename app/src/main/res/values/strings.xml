@@ -2,5 +2,10 @@
     <string name="app_name">PopularTvShowApp</string>
     <string name="tv_show_title">Game of Thrones</string>
     <string name="vote_average">8.5</string>
+    <string name="tag_line">Winter Is Coming</string>
+    <string name="overview">Overview</string>
+    <string name="overview_text">Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night\'s Watch, is all that stands between the realms of men and icy horrors beyond.</string>
+    <string name="creator">Creator</string>
+    <string name="homepage">homepage</string>
 
 </resources>
