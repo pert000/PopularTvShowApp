@@ -33,11 +33,6 @@ class TvShowsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentTvShowsBinding.inflate(inflater, container, false);
- // binding.title.setOnClickListener { Navigation.findNavController(it).navigate(R.id.action_tvShowsFragment_to_detailsFragment) }
-//        viewModel.getShips();
-//        viewModel.tvShowsResponse.observe(viewLifecycleOwner){
-//
-//        }
 
         binding.refreshLayout.setOnRefreshListener {
             getTvShow()

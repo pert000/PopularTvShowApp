@@ -5,10 +5,12 @@ import android.graphics.BitmapFactory
 import android.os.Environment
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.populartvshowapp.R
 import com.example.populartvshowapp.databinding.TvShowItemBinding
 import com.example.populartvshowapp.model.TvShowsModel
 
@@ -28,10 +30,13 @@ class TvShowsAdapter(val context: Context) :
                 Glide.with(context)
                     .load("https://image.tmdb.org/t/p/original//" + item.poster_path)//todo
                     .into(image)
-                voteAverage.text=item.vote_average.toString()
+                voteAverage.text = item.vote_average.toString()
 
 
-
+                itemMain.setOnClickListener {
+                    Navigation.findNavController(it)
+                        .navigate(R.id.action_tvShowsFragment_to_detailsFragment)
+                }
             }
         }
     }
