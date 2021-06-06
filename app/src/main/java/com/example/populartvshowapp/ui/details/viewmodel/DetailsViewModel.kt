@@ -3,8 +3,8 @@ package com.example.populartvshowapp.ui.details.viewmodel
 import androidx.lifecycle.*
 import com.example.populartvshowapp.date.Resource
 import com.example.populartvshowapp.model.DetailsResponse
+import com.example.populartvshowapp.model.TvShowsResponse
 import com.example.populartvshowapp.repository.DetailsRepository
-import com.example.populartvshowapp.repository.TvShowsRepository
 
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -12,6 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DetailsViewModel @Inject constructor(
+
     private val repository: DetailsRepository
 ) : ViewModel() {
     private var detailsRequest = MutableLiveData<Int>()
@@ -21,6 +22,19 @@ class DetailsViewModel @Inject constructor(
 
 
     fun getDetails(id: Int) {
+        detailsRequest.value = id
+    }
+
+
+
+
+    private var similarRequest = MutableLiveData<Int>()
+
+    var similarResponse: LiveData<Resource<TvShowsResponse>> =
+        similarRequest.switchMap { repository.getSimilar(it) }
+
+
+    fun getSimilarTvShows(id: Int) {
         detailsRequest.value = id
     }
 }

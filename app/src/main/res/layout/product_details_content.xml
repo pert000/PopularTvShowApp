@@ -85,7 +85,6 @@
             app:layout_constraintTop_toBottomOf="@id/view_creator" />
 
 
-
         <TextView
             android:id="@+id/homepage_title"
             android:layout_width="0dp"
@@ -117,8 +116,8 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
-            android:linksClickable="true"
             android:autoLink="web"
+            android:linksClickable="true"
             android:text="https://www.netflix.com/title/80057918"
             android:textColor="@color/black"
             android:textSize="14sp"
@@ -164,7 +163,45 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/view" />
 
+        <TextView
+            android:id="@+id/similar_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="5dp"
+            android:text="@string/more_like_this"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/overview" />
+
+        <View
+            android:id="@+id/view_similar"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginStart="15dp"
+            android:background="@color/Dark_blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/similar_title" />
+
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                android:paddingBottom="100dp"
+                android:visibility="visible"
+                app:layout_constraintTop_toBottomOf="@id/view_similar" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.core.widget.NestedScrollView>

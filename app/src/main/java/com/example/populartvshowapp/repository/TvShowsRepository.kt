@@ -23,13 +23,6 @@ class TvShowsRepository @Inject constructor(
         private const val NETWORK_PAGE_SIZE = 25
     }
 
-//    fun getShows() = performGetOperation (networkCall = {
-//        tvShowsPagingDataSource.getTvShows()
-//    })
-//
-//    fun getDetails() = performGetOperation (networkCall = {
-//        tvShowsPagingDataSource.getDetails()
-//    })
 }
 
 

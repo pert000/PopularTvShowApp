@@ -1,7 +1,6 @@
 package com.example.populartvshowapp.repository
 
 import com.example.populartvshowapp.date.DateSource
-import com.example.populartvshowapp.date.TvShowsPagingDataSource
 import com.example.spacexmp.utils.performGetOperation
 import javax.inject.Inject
 
@@ -10,6 +9,9 @@ class DetailsRepository @Inject constructor(
 ) {
         fun getDetails(id:Int) = performGetOperation (networkCall = {
             dateSource.getDetails(id)
+    })
+    fun getSimilar(id:Int) = performGetOperation (networkCall = {
+        dateSource.getSimilar(id)
     })
 
 }
