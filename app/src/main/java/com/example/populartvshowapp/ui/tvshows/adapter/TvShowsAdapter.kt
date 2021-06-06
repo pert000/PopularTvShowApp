@@ -2,6 +2,7 @@ package com.example.populartvshowapp.ui.tvshows.adapter
 
 import android.content.Context
 import android.graphics.BitmapFactory
+import android.os.Bundle
 import android.os.Environment
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.example.populartvshowapp.R
 import com.example.populartvshowapp.databinding.TvShowItemBinding
 import com.example.populartvshowapp.model.TvShowsModel
+import com.example.spacexmp.utils.ExtraKeys
 
 
 class TvShowsAdapter(val context: Context) :
@@ -34,8 +36,10 @@ class TvShowsAdapter(val context: Context) :
 
 
                 itemMain.setOnClickListener {
+                    val bundle = Bundle()
+                    bundle.putInt(ExtraKeys.TV_SHOW_ID, item.id)
                     Navigation.findNavController(it)
-                        .navigate(R.id.action_tvShowsFragment_to_detailsFragment)
+                        .navigate(R.id.action_tvShowsFragment_to_detailsFragment, bundle)
                 }
             }
         }

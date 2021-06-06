@@ -16,15 +16,6 @@ import javax.inject.Inject
 class TvShowsViewModel @Inject constructor(
     private val pagingRepository: TvShowsRepository
 ) : ViewModel() {
-//    private var tvShowsRequest = MutableLiveData<String>()
-//
-//    var tvShowsResponse: LiveData<Resource<TvShowsResponse>> =
-//        tvShowsRequest.switchMap { pagingRepository.getShows() }
-//
-//
-//    fun getShips() {
-//        tvShowsRequest.value= " "
-//    }
 
     private var currentResult: Flow<PagingData<TvShowsModel>>? = null
     fun getShips(): Flow<PagingData<TvShowsModel>>{

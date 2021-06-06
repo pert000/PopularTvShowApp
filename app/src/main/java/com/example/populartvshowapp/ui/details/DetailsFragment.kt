@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.*
 import com.example.populartvshowapp.databinding.FragmentDetailsBinding
 import com.example.populartvshowapp.ui.details.viewmodel.DetailsViewModel
+import com.example.spacexmp.utils.ExtraKeys
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -25,10 +26,10 @@ class DetailsFragment : Fragment() {
     ): View? {
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
 
-//        viewModel.getDetails();
-//        viewModel.detailsResponse.observe(viewLifecycleOwner, Observer {
+        arguments?.getInt(ExtraKeys.TV_SHOW_ID)?.let { viewModel.getDetails(it) };
+        viewModel.detailsResponse.observe(viewLifecycleOwner, Observer {
 
-//        })
+        })
 
         return binding.root
     }

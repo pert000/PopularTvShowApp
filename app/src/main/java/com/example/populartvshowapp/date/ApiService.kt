@@ -16,9 +16,10 @@ interface ApiService {
         @Query("page") page: Int
     ): Response<TvShowsResponse>
 
-    @GET("3/tv/{tv_id}")
+    @GET("/3/tv/{tv_id}")
     suspend fun getDetails(
-        @Query("api_key") api_key: String, @Query("language") language: String,
-        @Path("tv_id") tv_id: Int
+        @Path("tv_id") tv_id: Int,
+        @Query("api_key") api_key: String,
+        @Query("language") language: String
     ): Response<DetailsResponse>
 }

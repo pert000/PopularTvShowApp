@@ -4,19 +4,16 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.populartvshowapp.model.TvShowsModel
 import com.example.populartvshowapp.repository.TvShowsRepository
+import com.example.spacexmp.utils.ExtraKeys
 import javax.inject.Inject
 
 
 class TvShowsPagingDataSource @Inject constructor(
     private val apiService: ApiService,
 ) : PagingSource<Int, TvShowsModel>() {
-    // suspend fun getDetails()=getResult { apiService.getDetails("a21b74375fa6e98953cb13979b219a6a","en-US",103157) }
-
-    // suspend fun getTvShows()=getResult { apiService.getTvShows("a21b74375fa6e98953cb13979b219a6a","en-US",10) }
     companion object {
-        private const val STARTING_PAGE_INDEX = 0
+        private const val STARTING_PAGE_INDEX = 1
     }
-
 
     override fun getRefreshKey(state: PagingState<Int, TvShowsModel>): Int? {
         TODO("Not yet implemented")
@@ -26,7 +23,7 @@ class TvShowsPagingDataSource @Inject constructor(
         val page = params.key ?: STARTING_PAGE_INDEX
         return try {
             val response =
-                apiService.getTvShows("a21b74375fa6e98953cb13979b219a6a", "en-US", page)
+                apiService.getTvShows(ExtraKeys.API_KEY, ExtraKeys.LANGUAGE, page)
             val shows = mutableListOf<TvShowsModel>()
 
             response.body()?.results?.let {
