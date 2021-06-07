@@ -2,7 +2,6 @@ package com.example.populartvshowapp.ui.details
 
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.populartvshowapp.databinding.FragmentDetailsBinding
+import com.example.populartvshowapp.model.CreatedBy
+import com.example.populartvshowapp.ui.details.adapter.CreatorAdapter
 import com.example.populartvshowapp.ui.details.viewmodel.DetailsViewModel
 import com.example.spacexmp.utils.ExtraKeys
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,6 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class DetailsFragment : Fragment() {
     private lateinit var binding: FragmentDetailsBinding
     private val viewModel: DetailsViewModel by viewModels()
+    lateinit var adapterCreator: CreatorAdapter
 
 
     override fun onCreateView(
@@ -42,14 +44,24 @@ class DetailsFragment : Fragment() {
             binding.content.tagLine.text = it.data?.tagline
             binding.content.overview.text = it.data?.overview
             binding.content.homepage.text = it.data?.homepage
-            binding.content.creator.text = it.data?.created_by?.get(0)?.name //todo
-
-
+            //    binding.content.creator.text = it.data?.created_by?.get(0)?.name //todo
+            binding.content.voteAverage.text = it.data?.vote_average.toString()
+            val list: List<CreatedBy>? = it.data?.created_by
+            if (list != null) {
+                adapterCreator = CreatorAdapter(
+                    requireContext(),
+                    list
+                )
+                binding.content.list.adapter = adapterCreator
+                adapterCreator.notifyDataSetChanged()
+            }
         })
 
 
-        viewModel.similarResponse.observe(viewLifecycleOwner,  Observer {
-       it.data
+
+
+        viewModel.similarResponse.observe(viewLifecycleOwner, Observer {
+            it.data
 
 
         })

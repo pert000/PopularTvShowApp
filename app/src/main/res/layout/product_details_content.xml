@@ -13,12 +13,28 @@
         android:animateLayoutChanges="true"
         android:paddingBottom="100dp">
 
+
+        <TextView
+            android:id="@+id/vote_average"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_tv_shows_item"
+            android:drawableStart="@drawable/ic_baseline_star_rate_24"
+            android:maxLines="1"
+            android:paddingEnd="10dp"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="@string/vote_average" />
+
+
         <TextView
             android:id="@+id/name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="1dp"
             android:layout_marginEnd="15dp"
             android:text="@string/tv_show_title"
             android:textAlignment="center"
@@ -27,7 +43,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/vote_average" />
 
         <TextView
             android:id="@+id/tag_line"
@@ -70,19 +86,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/creator_title" />
 
-        <TextView
-            android:id="@+id/creator"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+
+        <ListView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
-            android:text="David Benioff"
-            android:textColor="@color/black"
-            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/view_creator" />
+
+
 
 
         <TextView
@@ -90,14 +106,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="4dp"
             android:layout_marginEnd="5dp"
             android:text="@string/homepage"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/creator" />
+            app:layout_constraintTop_toBottomOf="@id/list" />
 
         <View
             android:id="@+id/view_homepage"
