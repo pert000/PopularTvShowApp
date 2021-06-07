@@ -48,11 +48,11 @@ class DetailsFragment : Fragment() {
         })
 
 
-        viewModel.similarResponse.observe(viewLifecycleOwner, Observer {
-            Log.d("TESTITTTT", "getTvShow: " + it.data?.results?.size)
+        viewModel.similarResponse.observe(viewLifecycleOwner,  Observer {
+       it.data
+
 
         })
-
 
         return binding.root
     }
