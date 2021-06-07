@@ -2,6 +2,7 @@ package com.example.populartvshowapp.ui.details
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,7 +45,6 @@ class DetailsFragment : Fragment() {
             binding.content.tagLine.text = it.data?.tagline
             binding.content.overview.text = it.data?.overview
             binding.content.homepage.text = it.data?.homepage
-            //    binding.content.creator.text = it.data?.created_by?.get(0)?.name //todo
             binding.content.voteAverage.text = it.data?.vote_average.toString()
             val list: List<CreatedBy>? = it.data?.created_by
             if (list != null) {
@@ -54,6 +54,7 @@ class DetailsFragment : Fragment() {
                 )
                 binding.content.list.adapter = adapterCreator
                 adapterCreator.notifyDataSetChanged()
+
             }
         })
 
@@ -61,7 +62,7 @@ class DetailsFragment : Fragment() {
 
 
         viewModel.similarResponse.observe(viewLifecycleOwner, Observer {
-            it.data
+            Log.d("^_^", "onCreateView: " +it.data)
 
 
         })

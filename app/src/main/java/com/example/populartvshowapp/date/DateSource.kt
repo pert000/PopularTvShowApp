@@ -1,7 +1,7 @@
 package com.example.populartvshowapp.date
 
 import androidx.paging.PagingSource
-import com.example.populartvshowapp.model.TvShowsModel
+import com.example.populartvshowapp.model.SimilarResponse
 import com.example.spacexmp.utils.ExtraKeys
 import javax.inject.Inject
 

@@ -14,21 +14,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.populartvshowapp.R
 import com.example.populartvshowapp.databinding.ProductDetailsContentBinding
+import com.example.populartvshowapp.databinding.SimilarTvShowItemBinding
 import com.example.populartvshowapp.databinding.TvShowItemBinding
-import com.example.populartvshowapp.model.TvShowsModel
+import com.example.populartvshowapp.model.SimilarResponse
 import com.example.spacexmp.utils.ExtraKeys
 
 
 class TvShowsAdapter(val context: Context) :
-    PagingDataAdapter<TvShowsModel, TvShowsAdapter.ViewHolder>(DiffCallback()) {
+    PagingDataAdapter<SimilarResponse, TvShowsAdapter.ViewHolder>(DiffCallback()) {
 
 
     class ViewHolder(
         val context: Context,
-        private val binding: ProductDetailsContentBinding
+        private val binding: SimilarTvShowItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: TvShowsModel) {
+        fun bind(item: SimilarResponse) {
             binding.apply {
                 name.text = item.name
 
@@ -47,19 +48,19 @@ class TvShowsAdapter(val context: Context) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             context,
-            ProductDetailsContentBinding.inflate(LayoutInflater.from(context), parent, false)
+            SimilarTvShowItemBinding.inflate(LayoutInflater.from(context), parent, false)
         )
     }
 
 
 }
 
-private class DiffCallback : DiffUtil.ItemCallback<TvShowsModel>() {
-    override fun areItemsTheSame(oldItem: TvShowsModel, newItem: TvShowsModel): Boolean {
+private class DiffCallback : DiffUtil.ItemCallback<SimilarResponse>() {
+    override fun areItemsTheSame(oldItem: SimilarResponse, newItem: SimilarResponse): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: TvShowsModel, newItem: TvShowsModel): Boolean {
+    override fun areContentsTheSame(oldItem: SimilarResponse, newItem: SimilarResponse): Boolean {
         return oldItem == newItem
     }
 }
