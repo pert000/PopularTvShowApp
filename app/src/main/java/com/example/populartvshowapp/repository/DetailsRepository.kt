@@ -10,8 +10,5 @@ class DetailsRepository @Inject constructor(
         fun getDetails(id:Int) = performGetOperation (networkCall = {
             dateSource.getDetails(id)
     })
-    fun getSimilar(id:Int) = performGetOperation (networkCall = {
-        dateSource.getSimilar(id)
-    })
 
 }

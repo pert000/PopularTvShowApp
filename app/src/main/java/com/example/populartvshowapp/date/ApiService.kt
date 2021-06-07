@@ -25,8 +25,9 @@ interface ApiService {
 
     @GET("/3/tv/{tv_id}/similar")
     suspend fun getSimilar(
-        @Path("tv_id") tv_id: Int,
+        @Path("tv_id") tv_id: Int?,
         @Query("api_key") api_key: String,
-        @Query("language") language: String
+        @Query("language") language: String,
+        @Query("page") page: Int
     ): Response<SimilarTvShowsModel>
 }

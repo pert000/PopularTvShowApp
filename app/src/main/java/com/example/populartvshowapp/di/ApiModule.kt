@@ -2,8 +2,10 @@ package com.example.populartvshowapp.di
 
 import com.example.populartvshowapp.date.ApiService
 import com.example.populartvshowapp.date.DateSource
+import com.example.populartvshowapp.date.SimilarPagingDataSource
 import com.example.populartvshowapp.date.TvShowsPagingDataSource
 import com.example.populartvshowapp.repository.DetailsRepository
+import com.example.populartvshowapp.repository.SimilarTvShowsRepository
 import com.example.populartvshowapp.repository.TvShowsRepository
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -65,4 +67,10 @@ object ApiModule {
     @Provides
     fun repositoryDetails(dataSource: DateSource) =
         DetailsRepository(dataSource)
+
+    @Singleton
+    @Provides
+    fun repositorySimilarTvShows(dataSource: SimilarPagingDataSource) =
+        SimilarTvShowsRepository(dataSource)
+
 }

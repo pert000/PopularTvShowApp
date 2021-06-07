@@ -1,10 +1,7 @@
 package com.example.populartvshowapp.ui.details.adapter
 
 import android.content.Context
-import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.os.Environment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.Navigation
@@ -15,13 +12,12 @@ import com.bumptech.glide.Glide
 import com.example.populartvshowapp.R
 import com.example.populartvshowapp.databinding.ProductDetailsContentBinding
 import com.example.populartvshowapp.databinding.SimilarTvShowItemBinding
-import com.example.populartvshowapp.databinding.TvShowItemBinding
-import com.example.populartvshowapp.model.SimilarResponse
+import com.example.populartvshowapp.model.ResultX
 import com.example.spacexmp.utils.ExtraKeys
 
 
-class TvShowsAdapter(val context: Context) :
-    PagingDataAdapter<SimilarResponse, TvShowsAdapter.ViewHolder>(DiffCallback()) {
+class DetailsAdapter(val context: Context) :
+    PagingDataAdapter<ResultX, DetailsAdapter.ViewHolder>(DiffCallback()) {
 
 
     class ViewHolder(
@@ -29,9 +25,19 @@ class TvShowsAdapter(val context: Context) :
         private val binding: SimilarTvShowItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: SimilarResponse) {
+        fun bind(item: ResultX) {
             binding.apply {
-                name.text = item.name
+                Glide.with(context)
+                    .load("https://image.tmdb.org/t/p/original//" +item.poster_path)
+                    .into(binding.image)
+
+                main.setOnClickListener {
+                    val bundle = Bundle()
+                    bundle.putInt(ExtraKeys.TV_SHOW_ID, item.id)
+                    Navigation.findNavController(it)
+                        .navigate(R.id.action_detailsFragment_self, bundle)
+
+                }
 
             }
         }
@@ -55,12 +61,12 @@ class TvShowsAdapter(val context: Context) :
 
 }
 
-private class DiffCallback : DiffUtil.ItemCallback<SimilarResponse>() {
-    override fun areItemsTheSame(oldItem: SimilarResponse, newItem: SimilarResponse): Boolean {
+private class DiffCallback : DiffUtil.ItemCallback<ResultX>() {
+    override fun areItemsTheSame(oldItem: ResultX, newItem: ResultX): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: SimilarResponse, newItem: SimilarResponse): Boolean {
+    override fun areContentsTheSame(oldItem: ResultX, newItem: ResultX): Boolean {
         return oldItem == newItem
     }
 }
