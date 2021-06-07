@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 import com.example.populartvshowapp.R
 import com.example.populartvshowapp.databinding.TvShowItemBinding
 import com.example.populartvshowapp.model.SimilarResponse
-import com.example.spacexmp.utils.ExtraKeys
+import com.example.populartvshowapp.utils.ExtraKeys
 
 class TvShowsAdapter(val context: Context) :
     PagingDataAdapter<SimilarResponse, TvShowsAdapter.ViewHolder>(DiffCallback()) {

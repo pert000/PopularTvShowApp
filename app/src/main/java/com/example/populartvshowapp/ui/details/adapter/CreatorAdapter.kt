@@ -8,10 +8,9 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.example.populartvshowapp.R
 import com.example.populartvshowapp.model.CreatedBy
-import kotlin.collections.ArrayList
 
 class CreatorAdapter(context: Context, arrayList: List<CreatedBy>) :
-    ArrayAdapter<CreatedBy>(context, 0, arrayList as List<CreatedBy>) {
+    ArrayAdapter<CreatedBy>(context, 0, arrayList ) {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         var currentItemView = convertView
 

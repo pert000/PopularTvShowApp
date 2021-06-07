@@ -3,8 +3,7 @@ package com.example.populartvshowapp.date
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.populartvshowapp.model.SimilarResponse
-import com.example.populartvshowapp.repository.TvShowsRepository
-import com.example.spacexmp.utils.ExtraKeys
+import com.example.populartvshowapp.utils.ExtraKeys
 import javax.inject.Inject
 
 

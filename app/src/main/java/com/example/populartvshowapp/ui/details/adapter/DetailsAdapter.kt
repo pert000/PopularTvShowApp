@@ -10,10 +10,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.populartvshowapp.R
-import com.example.populartvshowapp.databinding.ProductDetailsContentBinding
 import com.example.populartvshowapp.databinding.SimilarTvShowItemBinding
 import com.example.populartvshowapp.model.ResultX
-import com.example.spacexmp.utils.ExtraKeys
+import com.example.populartvshowapp.utils.ExtraKeys
 
 
 class DetailsAdapter(val context: Context) :

@@ -22,7 +22,7 @@ import com.example.populartvshowapp.ui.details.adapter.CreatorAdapter
 import com.example.populartvshowapp.ui.details.adapter.DetailsAdapter
 import com.example.populartvshowapp.ui.details.viewmodel.DetailsViewModel
 import com.example.populartvshowapp.ui.tvshows.adapter.TvShowsAdapter
-import com.example.spacexmp.utils.ExtraKeys
+import com.example.populartvshowapp.utils.ExtraKeys
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
