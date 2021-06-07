@@ -4,6 +4,7 @@ import androidx.lifecycle.*
 import com.example.populartvshowapp.date.Resource
 import com.example.populartvshowapp.model.DetailsResponse
 import com.example.populartvshowapp.model.SimilarResponse
+import com.example.populartvshowapp.model.SimilarTvShowsModel
 import com.example.populartvshowapp.model.TvShowsResponse
 import com.example.populartvshowapp.repository.DetailsRepository
 
@@ -31,7 +32,7 @@ class DetailsViewModel @Inject constructor(
 
     private var similarRequest = MutableLiveData<Int>()
 
-    var similarResponse: LiveData<Resource<SimilarResponse>> =
+    var similarResponse: LiveData<Resource<SimilarTvShowsModel>> =
         similarRequest.switchMap { repository.getSimilar(it) }
 
 

@@ -6,13 +6,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.populartvshowapp.R
 import com.example.populartvshowapp.databinding.FragmentDetailsBinding
+import com.example.populartvshowapp.date.Resource
 import com.example.populartvshowapp.model.CreatedBy
 import com.example.populartvshowapp.ui.details.adapter.CreatorAdapter
 import com.example.populartvshowapp.ui.details.viewmodel.DetailsViewModel
@@ -33,39 +36,49 @@ class DetailsFragment : Fragment() {
     ): View? {
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
 
-        viewModel.getSimilarTvShows(66922)
+        arguments?.getInt(ExtraKeys.TV_SHOW_ID)?.let { viewModel.getSimilarTvShows(it) }
 
         arguments?.getInt(ExtraKeys.TV_SHOW_ID)?.let { viewModel.getDetails(it) };
         viewModel.detailsResponse.observe(viewLifecycleOwner, Observer {
-            Glide.with(this)
-                .load("https://image.tmdb.org/t/p/original//" + it.data?.poster_path)//todo
-                .into(binding.image)
+            if (it.status == Resource.Status.SUCCESS) {
+                Glide.with(this)
+                    .load("https://image.tmdb.org/t/p/original//" + it.data?.poster_path)//todo
+                    .into(binding.image)
 
-            binding.content.name.text = it.data?.name
-            binding.content.tagLine.text = it.data?.tagline
-            binding.content.overview.text = it.data?.overview
-            binding.content.homepage.text = it.data?.homepage
-            binding.content.voteAverage.text = it.data?.vote_average.toString()
-            val list: List<CreatedBy>? = it.data?.created_by
-            if (list != null) {
-                adapterCreator = CreatorAdapter(
-                    requireContext(),
-                    list
+                binding.content.name.text = it.data?.name
+                binding.content.tagLine.text = it.data?.tagline
+                binding.content.overview.text = it.data?.overview
+                binding.content.homepage.text = it.data?.homepage
+                binding.content.voteAverage.text = it.data?.vote_average.toString()
+                val list: List<CreatedBy>? = it.data?.created_by
+                if (list != null) {
+                    adapterCreator = CreatorAdapter(
+                        requireContext(),
+                        list
+                    )
+                    binding.content.list.adapter = adapterCreator
+                    adapterCreator.notifyDataSetChanged()
+
+                }
+            } else if (it.status == Resource.Status.ERROR) {
+
+                Toast.makeText(
+                    context,
+                    getString(R.string.error_text),
+                    Toast.LENGTH_SHORT
                 )
-                binding.content.list.adapter = adapterCreator
-                adapterCreator.notifyDataSetChanged()
-
+                    .show()
             }
         })
 
 
 
 
-        viewModel.similarResponse.observe(viewLifecycleOwner, Observer {
-            Log.d("^_^", "onCreateView: " +it.data)
+        viewModel.similarResponse.observe(viewLifecycleOwner) {
+            Log.d("^_^", "onCreateView: " + it.data)
 
 
-        })
+        }
 
         return binding.root
     }

@@ -1,6 +1,6 @@
 package com.example.populartvshowapp.model
 
-data class Result(
+data class ResultX(
     val backdrop_path: String?,
     val first_air_date: String?,
     val genre_ids: List<Int>?,
